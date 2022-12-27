@@ -1,19 +1,16 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
+
+const routes = require("./src/routes/routes");
 const app = express();
+
+require("./src/database/connection");
 
 const port = process.env.PORT || 3000;
 
-mongoose.set("strictQuery", false);
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("db connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+app.use(express.json());
+
+app.use("/", routes);
 
 app.listen(port, () => {
   console.log(`server listening on port ${port}`);
