@@ -4,7 +4,6 @@ const UserReward = require("../database/model");
 const REWARD_POINTS = require("../constants/rewardConstant");
 
 router.post("/service-reward/:accountNumber/:eventName", async (req, res) => {
-  console.log(req.body);
   let totalPoint = 0;
   if (req.body.eventName in REWARD_POINTS) {
     totalPoint = REWARD_POINTS[req.body.eventName];
