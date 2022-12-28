@@ -3,7 +3,7 @@ const REWARD_POINTS = {
   "add-card": 10,
   "set-security-pin": 10,
   "deposit-money": 10,
-  "share-feedback": 15,
+  visiting: 15,
   "enable-blackbook-notification": 20,
   "fingerprint-login": 10,
   "update-rg-tool": 10,
