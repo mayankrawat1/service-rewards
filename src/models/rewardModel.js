@@ -4,19 +4,19 @@ const userRewardSchema = new mongoose.Schema(
   {
     eventName: {
       type: String,
-      required: true,
+      required: true
     },
     accountNumber: {
       type: Number,
-      required: true,
+      required: true
     },
     rewardPoint: {
       type: Number,
-      reuired: true,
+      reuired: true
     },
     badge: {
-      type: String,
-    },
+      type: String
+    }
   },
   { timestamps: true }
 );

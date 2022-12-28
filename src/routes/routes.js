@@ -3,7 +3,7 @@ const router = express();
 const rewardController = require("../controllers/rewardController");
 
 router.post(
-  "/service-reward/:accountNumber/:eventName",
+  "/create-reward-request",
   rewardController.saveReward
 );
 

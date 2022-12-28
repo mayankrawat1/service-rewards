@@ -7,10 +7,10 @@ module.exports.saveReward = async (
   badge
 ) => {
   const rewardPointData = new UserReward({
-    eventName: eventName,
-    accountNumber: accountNumber,
+    eventName,
+    accountNumber,
     rewardPoint: totalPoint,
-    badge: badge,
+    badge
   });
   return rewardPointData.save();
 };

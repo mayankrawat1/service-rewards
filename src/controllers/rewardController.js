@@ -11,8 +11,8 @@ module.exports.saveReward = async (req, res, next) => {
     const data = await saveReward(eventName, accountNumber, totalPoint, badge);
     res.status(201).send(data);
   } catch (error) {
-    res.status(400).json({
-      message: error.message,
+    res.status(500).json({
+      message: error.message
     });
   }
 };

@@ -4,13 +4,13 @@ const { dbconnect } = require("./src/database/connection");
 
 const app = express();
 
-//middleware
+// middleware
 app.use(express.json());
 
-//routes
-app.use("/", require("./src/routes/routes"));
+// routes
+app.use("/service-reward", require("./src/routes/routes"));
 
-//database connection
+// database connection
 dbconnect();
 
 app.listen(PORT, () => {
