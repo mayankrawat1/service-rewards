@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
+const { MONGO_URI } = require("../../config");
 
-mongoose.set("strictQuery", false);
-mongoose
-  .connect(process.env.MONGO_URI, { dbName: "tab-user-reward" })
-  .then(() => {
-    console.log("db connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+module.exports.dbconnect = async () => {
+  try {
+    mongoose.set("strictQuery", true);
+    await mongoose.connect(MONGO_URI);
+    console.log("Connect to database");
+  } catch (err) {
+    console.log(err.message);
+  }
+};

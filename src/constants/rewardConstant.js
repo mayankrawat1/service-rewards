@@ -7,7 +7,7 @@ const REWARD_POINTS = {
   "enable-blackbook-notification": 20,
   "fingerprint-login": 10,
   "update-rg-tool": 10,
-  "bestfriend-profile": 5,
+  "bestfriend-profile": 5
 };
 
 module.exports = REWARD_POINTS;
