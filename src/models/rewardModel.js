@@ -12,7 +12,11 @@ const userRewardSchema = new mongoose.Schema(
     },
     rewardPoint: {
       type: Number,
-      reuired: true
+      required: true
+    },
+    totalRewardPoint: {
+      type: Number,
+      required: true
     },
     badge: {
       type: String
