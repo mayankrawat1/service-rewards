@@ -7,4 +7,6 @@ router.post(
   rewardController.saveReward
 );
 
+router.get("/user-reward-request", rewardController.getUserAllRecord);
+
 module.exports = router;
