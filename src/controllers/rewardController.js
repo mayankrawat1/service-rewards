@@ -1,6 +1,6 @@
 const { REWARD_POINTS, REWARD_BADGE, BADGE_POINT } = require("../constants/rewardConstant");
 const UserReward = require("../models/rewardModel");
-const { saveReward, getUserAllRecord } = require("../services/rewardService");
+const { saveReward, getAllRecord } = require("../services/rewardService");
 
 module.exports.saveReward = async (req, res, next) => {
   try {
@@ -23,9 +23,9 @@ module.exports.saveReward = async (req, res, next) => {
   }
 };
 
-module.exports.getUserAllRecord = async (req, res, next) => {
+module.exports.getAllRecord = async (req, res, next) => {
   try {
-    const userAllRecord = await getUserAllRecord();
+    const userAllRecord = await getAllRecord();
     if (!userAllRecord) {
       return res.status(404).send({ message: "user not found" });
     }

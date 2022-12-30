@@ -17,6 +17,19 @@ module.exports.saveReward = async (
   return rewardPointData.save();
 };
 
-module.exports.getUserAllRecord = async () => {
-  return UserReward.find().sort({ totalRewardPoint: -1 });
+module.exports.getAllRecord = async () => {
+  return UserReward.aggregate([
+    {
+      $group: {
+        _id: "$accountNumber",
+        eventName: { $last: "$eventName" },
+        accountNumber: { $last: "$accountNumber" },
+        rewardPoint: { $last: "$rewardPoint" },
+        totalRewardPoint: { $max: "$totalRewardPoint" },
+        badge: { $last: "$badge" },
+        createdAt: { $last: "$createdAt" },
+        updatedAt: { $last: "$updatedAt" }
+      }
+    }
+  ]);
 };
