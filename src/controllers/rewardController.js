@@ -22,7 +22,8 @@ module.exports.getUserAllRecord = async (req, res, next) => {
   try {
     const { accountNumber } = req.body;
     const userAllRecord = await getUserAllRecord(accountNumber);
-    if (userAllRecord) {
+    console.log(userAllRecord);
+    if (!userAllRecord) {
       res.status(404).send({ message: "user not found" });
       return;
     }
