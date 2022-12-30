@@ -17,6 +17,6 @@ module.exports.saveReward = async (
   return rewardPointData.save();
 };
 
-module.exports.getUserAllRecord = async (accountNumber) => {
-  return UserReward.find({ accountNumber }).sort({ _id: -1 });
+module.exports.getUserAllRecord = async () => {
+  return UserReward.find().sort({ totalRewardPoint: -1 });
 };

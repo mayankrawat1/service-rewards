@@ -25,8 +25,7 @@ module.exports.saveReward = async (req, res, next) => {
 
 module.exports.getUserAllRecord = async (req, res, next) => {
   try {
-    const { accountNumber } = req.body;
-    const userAllRecord = await getUserAllRecord(accountNumber);
+    const userAllRecord = await getUserAllRecord();
     if (!userAllRecord) {
       return res.status(404).send({ message: "user not found" });
     }
