@@ -1,4 +1,4 @@
-module.exports = (err, req, res) => {
+module.exports = (err, req, res, next) => {
   if (!err.status) {
     res.status(500).send({
       error: { code: "UNKNOWN_ERROR", message: "An unknown error occurred." }

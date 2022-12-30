@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const userRewardSchema = new mongoose.Schema(
   {
     eventName: {
-      type: String,
-      required: true
+      type: String
     },
     accountNumber: {
       type: Number,
