@@ -31,5 +31,9 @@ module.exports.getAllRecord = async () => {
         updatedAt: { $last: "$updatedAt" }
       }
     }
-  ]);
+  ]).sort({ totalRewardPoint: -1 });
+};
+
+module.exports.getUserRecord = async (accountNumber) => {
+  return UserReward.find({ accountNumber }).sort({ _id: -1 });
 };
