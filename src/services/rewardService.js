@@ -30,8 +30,12 @@ module.exports.getAllRecord = async () => {
         createdAt: { $last: "$createdAt" },
         updatedAt: { $last: "$updatedAt" }
       }
-    }
-  ]).sort({ totalRewardPoint: -1 });
+    },
+    {
+      $sort: { totalRewardPoint: -1 }
+    },
+    { $limit: 10 }
+  ]);
 };
 
 module.exports.getUserRecord = async (accountNumber) => {
