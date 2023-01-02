@@ -21,9 +21,7 @@ module.exports = async (req, res, next) => {
       }
     ]
   ).sort({ _id: -1 });
-  console.log(userPreviousRecord);
   const currentDate = new Date().toISOString().split("T")[0];
-  console.log(userPreviousRecord);
   if (userPreviousRecord.length > 0) {
     if (userPreviousRecord[0].createdAt === currentDate && req.body.spinWheelPoint) {
       return res.status(400).send({ error: "user already spin a wheel for today" });
