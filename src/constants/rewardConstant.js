@@ -36,6 +36,8 @@ const BADGE_POINT = {
   "SGM-punter": 10
 };
 
+const SPIN_WHEEL = "spin-wheel";
+
 module.exports = {
-  REWARD_POINTS, REWARD_BADGE, BADGE_POINT
+  REWARD_POINTS, REWARD_BADGE, BADGE_POINT, SPIN_WHEEL
 };

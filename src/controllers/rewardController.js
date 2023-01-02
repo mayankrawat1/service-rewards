@@ -1,4 +1,4 @@
-const { REWARD_POINTS, REWARD_BADGE, BADGE_POINT } = require("../constants/rewardConstant");
+const { REWARD_POINTS, REWARD_BADGE, BADGE_POINT, SPIN_WHEEL } = require("../constants/rewardConstant");
 const UserReward = require("../models/rewardModel");
 const { saveReward, getAllRecord, getUserRecord } = require("../services/rewardService");
 
@@ -6,7 +6,8 @@ module.exports.saveReward = async (req, res, next) => {
   try {
     let rewardPoint = 0;
     let badgeName = "";
-    const { eventName, accountNumber, badge, spinWheelPoint } = req.body;
+    const { accountNumber, badge, spinWheelPoint } = req.body;
+    const eventName = spinWheelPoint ? SPIN_WHEEL : req?.body?.eventName;
     if (spinWheelPoint) {
       rewardPoint = parseInt(spinWheelPoint);
     } else {
@@ -42,10 +43,10 @@ module.exports.getAllRecord = async (req, res, next) => {
 module.exports.getUserRecord = async (req, res, next) => {
   try {
     const { accountNumber } = req.body;
-    if (!accountNumber) {
-      return res.status(404).send({ error: "account number not found" });
-    }
     const userRecord = await getUserRecord(accountNumber);
+    if (userRecord.length === 0) {
+      return res.status(404).send({ error: "user not found" });
+    }
     res.status(200).send(userRecord);
   } catch (error) {
     next(error);
