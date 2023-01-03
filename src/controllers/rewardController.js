@@ -42,7 +42,7 @@ module.exports.getAllRecord = async (req, res, next) => {
 
 module.exports.getUserRecord = async (req, res, next) => {
   try {
-    const { accountNumber } = req.body;
+    const { accountNumber } = req.params;
     const userRecord = await getUserRecord(accountNumber);
     if (userRecord.length === 0) {
       return res.status(404).send({ error: "user not found" });

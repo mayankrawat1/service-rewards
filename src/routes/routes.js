@@ -5,6 +5,6 @@ const spinWheelHandler = require("../middlewares/spinWheelHandler");
 
 router.post("/create-reward-request", spinWheelHandler, rewardController.saveReward);
 router.get("/all-reward-request", rewardController.getAllRecord);
-router.get("/user-reward-request", rewardController.getUserRecord);
+router.get("/user-reward-request/:accountNumber", rewardController.getUserRecord);
 
 module.exports = router;
