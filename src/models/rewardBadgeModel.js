@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const rewardBadgeSchema = new mongoose.Schema({
-  rewardId: {
+  badgeNo: {
     type: Number,
     required: true,
     unique: true
   },
-  eventName: {
+  badgeName: {
     type: String,
     required: true,
     unique: true
