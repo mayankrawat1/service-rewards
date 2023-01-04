@@ -6,7 +6,7 @@ module.exports.saveReward = async (req, res, next) => {
   try {
     let rewardPoint = 0;
     let badgeName = "";
-    const { accountNumber, badge, spinWheelPoint } = req.body;
+    const { username, accountNumber, badge, spinWheelPoint } = req.body;
     const eventName = spinWheelPoint ? SPIN_WHEEL : req?.body?.eventName;
     if (spinWheelPoint) {
       rewardPoint = parseInt(spinWheelPoint);
@@ -21,7 +21,7 @@ module.exports.saveReward = async (req, res, next) => {
     }
     const userRewardData = await UserReward.findOne({ accountNumber }).sort({ _id: -1 });
     const userTotalRewardPoints = userRewardData ? userRewardData.totalRewardPoint : 0;
-    const data = await saveReward(eventName, accountNumber, rewardPoint, userTotalRewardPoints, badgeName);
+    const data = await saveReward(username, eventName, accountNumber, rewardPoint, userTotalRewardPoints, badgeName);
     res.status(201).send(data);
   } catch (error) {
     next(error);

@@ -1,6 +1,7 @@
 const UserReward = require("../models/rewardModel");
 
 module.exports.saveReward = async (
+  username,
   eventName,
   accountNumber,
   rewardPoint,
@@ -8,6 +9,7 @@ module.exports.saveReward = async (
   badge
 ) => {
   const rewardPointData = new UserReward({
+    username,
     eventName,
     accountNumber,
     rewardPoint,
@@ -22,6 +24,7 @@ module.exports.getAllRecord = async () => {
     {
       $group: {
         _id: "$accountNumber",
+        username: { $last: "$username" },
         eventName: { $last: "$eventName" },
         accountNumber: { $last: "$accountNumber" },
         rewardPoint: { $last: "$rewardPoint" },
