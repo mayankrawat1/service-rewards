@@ -37,7 +37,7 @@ module.exports.getAllRecord = async () => {
     {
       $sort: { totalRewardPoint: -1 }
     },
-    { $limit: 10 }
+    { $limit: 30 }
   ]);
 };
 
