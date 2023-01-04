@@ -1,9 +1,15 @@
-const { saveRewardPoint, getAllPointsData, updateRewardPointData, deleteRewardPointData } = require("../services/rewardPointService");
+const {
+  saveRewardPoint,
+  getAllPointsData,
+  updateRewardPointData,
+  deleteRewardPointData
+} = require("../services/rewardPointService");
 
 module.exports.saveRewardPoint = async (req, res, next) => {
   try {
-    const { eventName, points } = req.body;
-    const pointsData = await saveRewardPoint(eventName, points);
+    const { eventName, eventPoint } = req.body;
+    console.log(eventName, eventPoint);
+    const pointsData = await saveRewardPoint(eventName, eventPoint);
     res.status(201).send(pointsData);
   } catch (error) {
     next(error);
@@ -28,8 +34,12 @@ module.exports.updateRewardPointData = async (req, res, next) => {
     if (!eventId) {
       return res.status(404).send({ error: "Please provide event id" });
     }
-    const { eventName, points } = req.body;
-    const updatedPointData = await updateRewardPointData(eventId, eventName, points);
+    const { eventName, eventPoint } = req.body;
+    const updatedPointData = await updateRewardPointData(
+      eventId,
+      eventName,
+      eventPoint
+    );
     if (!updatedPointData) {
       return res.status(404).send({ error: "Invalid event id" });
     }

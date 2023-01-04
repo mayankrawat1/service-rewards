@@ -6,10 +6,9 @@ const rewardPointSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  points: {
+  eventPoint: {
     type: Number,
-    required: true,
-    unique: true
+    required: true
   }
 }, { timestamps: true });
 

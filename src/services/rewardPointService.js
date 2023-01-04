@@ -1,9 +1,9 @@
 const RewardPointModel = require("../models/rewardPointsModel");
 
-module.exports.saveRewardPoint = async (eventName, points) => {
+module.exports.saveRewardPoint = async (eventName, eventPoint) => {
   const rewardPointData = new RewardPointModel({
     eventName,
-    points
+    eventPoint
   });
   return rewardPointData.save();
 };
@@ -12,8 +12,8 @@ module.exports.getAllPointsData = async () => {
   return RewardPointModel.find();
 };
 
-module.exports.updateRewardPointData = async (eventId, eventName, points) => {
-  return RewardPointModel.findByIdAndUpdate(eventId, { eventName, points }, { new: true });
+module.exports.updateRewardPointData = async (eventId, eventName, eventPoint) => {
+  return RewardPointModel.findByIdAndUpdate(eventId, { eventName, eventPoint }, { new: true });
 };
 
 module.exports.deleteRewardPointData = async (eventId) => {
