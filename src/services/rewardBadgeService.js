@@ -1,10 +1,10 @@
 const RewardBadgeModel = require("../models/rewardBadgeModel");
 
-module.exports.saveRewardBadge = async (badgeNo, badgeName, points) => {
+module.exports.saveRewardBadge = async (badgeNo, badgeName, badgePoint) => {
   const rewardPointData = new RewardBadgeModel({
     badgeNo,
     badgeName,
-    points
+    badgePoint
   });
   return rewardPointData.save();
 };
@@ -13,8 +13,8 @@ module.exports.getAllBadgesData = async () => {
   return RewardBadgeModel.find();
 };
 
-module.exports.updateRewardBadgeData = async (badgeId, badgeName, points) => {
-  return RewardBadgeModel.findByIdAndUpdate(badgeId, { badgeName, points }, { new: true });
+module.exports.updateRewardBadgeData = async (badgeId, badgeName, badgePoint) => {
+  return RewardBadgeModel.findByIdAndUpdate(badgeId, { badgeName, badgePoint }, { new: true });
 };
 
 module.exports.deleteRewardPointData = async (badgeId) => {

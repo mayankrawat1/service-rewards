@@ -11,7 +11,7 @@ const rewardBadgeSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  points: {
+  badgePoint: {
     type: Number,
     required: true,
     unique: true

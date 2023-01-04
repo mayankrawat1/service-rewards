@@ -2,8 +2,8 @@ const { saveRewardBadge, getAllBadgesData, updateRewardBadgeData, deleteRewardPo
 
 module.exports.saveRewardBadge = async (req, res, next) => {
   try {
-    const { badgeNo, badgeName, points } = req.body;
-    const badgeData = await saveRewardBadge(badgeNo, badgeName, points);
+    const { badgeNo, badgeName, badgePoint } = req.body;
+    const badgeData = await saveRewardBadge(badgeNo, badgeName, badgePoint);
     res.status(201).send(badgeData);
   } catch (error) {
     next(error);
@@ -28,8 +28,8 @@ module.exports.updateRewardBadgeData = async (req, res, next) => {
     if (!badgeId) {
       return res.status(404).send({ error: "Please provide event id" });
     }
-    const { badgeName, points } = req.body;
-    const updatedBadgeData = await updateRewardBadgeData(badgeId, badgeName, points);
+    const { badgeName, badgePoint } = req.body;
+    const updatedBadgeData = await updateRewardBadgeData(badgeId, badgeName, badgePoint);
     console.log(updateRewardBadgeData);
     if (!updatedBadgeData) {
       return res.status(404).send({ error: "Invalid event id" });
