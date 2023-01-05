@@ -8,7 +8,6 @@ const {
 module.exports.saveRewardPoint = async (req, res, next) => {
   try {
     const { eventName, eventPoint } = req.body;
-    console.log(eventName, eventPoint);
     const pointsData = await saveRewardPoint(eventName, eventPoint);
     res.status(201).send(pointsData);
   } catch (error) {

@@ -1,4 +1,9 @@
-const { saveRewardBadge, getAllBadgesData, updateRewardBadgeData, deleteRewardPointData } = require("../services/rewardBadgeService");
+const {
+  saveRewardBadge,
+  getAllBadgesData,
+  updateRewardBadgeData,
+  deleteRewardPointData
+} = require("../services/rewardBadgeService");
 
 module.exports.saveRewardBadge = async (req, res, next) => {
   try {
@@ -29,8 +34,11 @@ module.exports.updateRewardBadgeData = async (req, res, next) => {
       return res.status(404).send({ error: "Please provide event id" });
     }
     const { badgeName, badgePoint } = req.body;
-    const updatedBadgeData = await updateRewardBadgeData(badgeId, badgeName, badgePoint);
-    console.log(updateRewardBadgeData);
+    const updatedBadgeData = await updateRewardBadgeData(
+      badgeId,
+      badgeName,
+      badgePoint
+    );
     if (!updatedBadgeData) {
       return res.status(404).send({ error: "Invalid event id" });
     }
