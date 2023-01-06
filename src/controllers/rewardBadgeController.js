@@ -11,7 +11,7 @@ module.exports.saveRewardBadge = async (req, res, next) => {
     const badgeData = await saveRewardBadge(badgeNo, badgeName, badgePoint);
     res.status(201).send(badgeData);
   } catch (error) {
-    next(error);
+    res.status(403).send({ message: "Data entry failed" });
   }
 };
 
@@ -23,7 +23,7 @@ module.exports.getAllBadgesData = async (req, res, next) => {
     }
     res.status(200).send(getAllData);
   } catch (error) {
-    next(error);
+    res.status(404).send({ message: "Data not found" });
   }
 };
 
@@ -44,7 +44,7 @@ module.exports.updateRewardBadgeData = async (req, res, next) => {
     }
     res.status(200).send(updatedBadgeData);
   } catch (error) {
-    next(error);
+    res.status(403).send({ message: "Data updation failed" });
   }
 };
 
@@ -60,6 +60,6 @@ module.exports.deleteRewardBadgeData = async (req, res, next) => {
     }
     res.status(200).send(deleteBadgeData);
   } catch (error) {
-    next(error);
+    res.status(403).send({ message: "Data deletion failed" });
   }
 };

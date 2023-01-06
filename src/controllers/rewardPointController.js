@@ -11,7 +11,7 @@ module.exports.saveRewardPoint = async (req, res, next) => {
     const pointsData = await saveRewardPoint(eventName, eventPoint);
     res.status(201).send(pointsData);
   } catch (error) {
-    next(error);
+    res.status(403).send({ message: "Data entry failed" });
   }
 };
 
@@ -23,7 +23,7 @@ module.exports.getAllPointsData = async (req, res, next) => {
     }
     res.status(200).send(getAllData);
   } catch (error) {
-    next(error);
+    res.status(404).send({ message: "Data not found" });
   }
 };
 
@@ -44,7 +44,7 @@ module.exports.updateRewardPointData = async (req, res, next) => {
     }
     res.status(200).send(updatedPointData);
   } catch (error) {
-    next(error);
+    res.status(403).send({ message: "Data updation failed" });
   }
 };
 
@@ -60,6 +60,6 @@ module.exports.deleteRewardPointData = async (req, res, next) => {
     }
     res.status(200).send(deletePointData);
   } catch (error) {
-    next(error);
+    res.status(403).send({ message: "Data deletion failed" });
   }
 };

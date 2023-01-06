@@ -13,8 +13,7 @@ const rewardBadgeSchema = new mongoose.Schema({
   },
   badgePoint: {
     type: Number,
-    required: true,
-    unique: true
+    required: true
   }
 }, { timestamps: true });
 

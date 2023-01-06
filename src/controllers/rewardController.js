@@ -1,4 +1,6 @@
-const { REWARD_POINTS, REWARD_BADGE, BADGE_POINT, SPIN_WHEEL } = require("../constants/rewardConstant");
+const { SPIN_WHEEL } = require("../constants/rewardConstant");
+const RewardBadgeModel = require("../models/rewardBadgeModel");
+const RewardPointModel = require("../models/rewardPointsModel");
 const UserReward = require("../models/rewardModel");
 const { saveReward, getAllRecord, getUserRecord } = require("../services/rewardService");
 
@@ -11,14 +13,24 @@ module.exports.saveReward = async (req, res, next) => {
     if (spinWheelPoint) {
       rewardPoint = parseInt(spinWheelPoint);
     } else {
-      if (eventName in REWARD_POINTS) {
-        rewardPoint = REWARD_POINTS[eventName];
+      if (eventName) {
+        const eventNameExists = await RewardPointModel.findOne({ eventName });
+        if (!eventNameExists) {
+          return res.status(404).send({ message: "Event not found" });
+        }
+        rewardPoint = eventNameExists.eventPoint;
       }
-      if (badge in REWARD_BADGE) {
-        badgeName = REWARD_BADGE[badge];
-        rewardPoint = BADGE_POINT[badgeName];
+
+      if (badge) {
+        const badgeNumberExists = await RewardBadgeModel.findOne({ badgeNo: badge });
+        if (!badgeNumberExists) {
+          return res.status(404).send({ message: "Badge not found" });
+        }
+        badgeName = badgeNumberExists.badgeName;
+        rewardPoint = badgeNumberExists.badgePoint;
       }
     }
+
     const userRewardData = await UserReward.findOne({ accountNumber }).sort({ _id: -1 });
     const userTotalRewardPoints = userRewardData ? userRewardData.totalRewardPoint : 0;
     const data = await saveReward(username, eventName, accountNumber, rewardPoint, userTotalRewardPoints, badgeName);
@@ -32,7 +44,7 @@ module.exports.getAllRecord = async (req, res, next) => {
   try {
     const userAllRecord = await getAllRecord();
     if (!userAllRecord) {
-      return res.status(404).send({ error: "user not found" });
+      return res.status(404).send({ message: "User not found" });
     }
     res.status(200).send(userAllRecord);
   } catch (error) {
@@ -45,7 +57,7 @@ module.exports.getUserRecord = async (req, res, next) => {
     const { accountNumber } = req.params;
     const userRecord = await getUserRecord(accountNumber);
     if (userRecord.length === 0) {
-      return res.status(404).send({ error: "user not found" });
+      return res.status(404).send({ message: "User not found" });
     }
     res.status(200).send(userRecord);
   } catch (error) {
